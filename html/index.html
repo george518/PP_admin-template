@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="../static/layui/css/layui.css">
+  <link rel="stylesheet" href="../static/admin/css/main.css">
+  <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css" media="all">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">layui 后台布局</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">商品管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          贤心
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll" style="width: 100%">
+      <div class="pp-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="nav-side">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;" class="pointer">
+            <i class="fa fa-cubes back_space1"></i> <span>内容管理</span>
+          </a>
+          <dl class="layui-nav-child">
+            <dd>
+              <a data-url="article.html" data-icon="fa-newspaper-o" data-title="文章管理" data-id="1" class="pointer">
+                <i class="fa fa-newspaper-o back_space1"></i> <span>文章管理</span>
+              </a>
+            </dd>
+            <dd>
+              <a data-url="tags.html" data-icon="fa-tags" data-title="标签管理" data-id="2" class="pointer">
+                <i class="fa fa-tags  back_space1"></i> <span>标签管理</span>
+              </a>
+            </dd>
+            <dd>
+              <a data-url="images.html" data-icon="fa-image" data-title="图片管理" data-id="3" class="pointer">
+                <i class="fa fa-image back_space1"></i> <span>图片管理</span>
+              </a>
+            </dd>
+
+            <dd>
+              <a data-url="banner.html" data-icon="fa-flag-checkered" data-title="Banner管理" data-id="4" class="pointer">
+                <i class="fa fa-flag-checkered back_space1"></i> <span>Banner管理</span>
+              </a>
+            </dd>
+
+            <dd>
+              <a data-url="category.html" data-icon="fa-folder-open-o" data-title="栏目管理" data-id="5" class="pointer">
+                <i class="fa fa-folder-open-o back_space1"></i> <span>栏目管理</span>
+              </a>
+            </dd>
+          </dl>
+        </li>
+        
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <i class="fa fa-cogs"></i>
+            <span>基础设置</span>
+          </a>
+          <dl class="layui-nav-child">
+            <dd>
+              <a data-url="config.html" data-icon="fa-cog" data-title="站点设置" data-id="6" class="pointer">
+                <i class="fa fa-cog back_space1"></i> <span>站点设置</span>
+              </a>
+            </dd>
+
+            <dd>
+              <a data-url="link.html" data-icon="fa-link" data-title="友情连接" data-id="7" class="pointer">
+                <i class="fa fa-link back_space1"></i> <span>友情连接</span>
+              </a>
+            </dd>
+
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a data-url="password.html" data-icon="fa-key" data-title="修改密码" data-id="8" class="pointer">
+            <i class="fa fa-key back_space1"></i><span>修改密码</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-tab pp-tab" lay-filter="main_tab" lay-allowClose="true">
+      <ul class="layui-tab-title" style="background: #efefef">
+        <li class="pp-tab-li layui-this" id="default_tab" lay-id="0">系统首页</li>
+      
+      </ul>
+      <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+          <iframe src="start.html" frameborder="0" scrolling="no" id="test" onload="this.height=100"></iframe>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script src="../static/layui/layui.js"></script>
+<script>
+//JavaScript代码区域
+var $;
+layui.use(['element','jquery','layer'], function(){
+  var element = layui.element;
+  $ = layui.jquery;
+  var layer = layui.layer;
+
+  //左侧菜单栏缩放
+  $('.pp-side-fold').on('click',function(){
+    var width = $(".layui-side").width();
+    if (width>50) {
+      $(".layui-side").width(50);
+      $(this).parent().find('span').hide();
+      $(".layui-body").addClass('pp-main');
+      $(".layui-nav-child").find('dd').addClass('pp-ddsided');
+      $(".layui-nav-child").find('a').addClass('pp-pointer');
+     }else{
+        $(".layui-side").width(200);
+        $(this).parent().find('span').show();
+        $(".layui-body").removeClass('pp-main');
+        $(".layui-nav-child").find('dd').removeClass('pp-ddsided');
+        $(".layui-nav-child").find('a').removeClass('pp-pointer');
+     }
+  })
+
+  //添加标签
+  element.on('nav(nav-side)', function(elem){
+    var url = elem.attr('data-url');
+    var title = elem.attr('data-title');
+    var id = elem.attr('data-id');
+    var icon = elem.attr('data-icon');
+    if (!url || !title || !id) {
+      return;
+    }
+    //判断是否存在
+    var is_exist = 0;
+    $(".layui-tab-title").find("li").each(function(){
+      var nav_id = $(this).attr("lay-id");
+      if (nav_id==id) {
+        is_exist = 1
+       }
+    })
+
+    if (is_exist==1) {
+       element.tabChange("main_tab", id);
+    }else{
+      var content = '<iframe src="'+url+'" frameborder="0" scrolling="no" id="test" onload="this.height=100"></iframe>';
+
+      element.tabAdd('main_tab', {
+        title: title
+        ,content: content //支持传入html
+        ,id: id
+      });
+
+      element.tabChange("main_tab", id);
+    }
+    // element.render();
+  });
+
+  //tab标签选中，菜单栏状态
+
+  $(".layui-tab-title").on("click","li",function(){
+    var id = $(this).attr('lay-id');
+    if (!id) {return;}
+    var sid = 0;
+    $(".layui-nav-item").find("a").each(function(){
+      sid = $(this).attr("data-id");
+      if (sid==id) {
+        $(this).click();
+      }
+    })
+  })
+
+
+
+  //tips
+  $(".layui-nav-child").find('a').hover(function(){
+    layer.tips($(this).attr('data-title'), $(this),{time:1000});
+  });
+
+  element.render();
+  $("#default_tab").html('<i class="fa fa-home back_space1"></i>系统首页');
+  
+});
+</script>
+</body>
+</html>

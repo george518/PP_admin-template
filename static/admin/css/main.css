@@ -1,0 +1,53 @@
+/*
+* @Author: georgehao
+* @Date:   2018-04-08 09:50:56
+* @Last Modified by:   haodaquan
+* @Last Modified time: 2018-04-08 22:33:36
+*/
+
+
+.pp-side-fold {
+	height: 40px;
+	background-color: #4A5064;
+	color: #aeb9c2;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer
+}
+
+.back_space1{
+	margin-right: 5px;
+}
+
+a.pointer{
+	cursor: pointer;
+}
+
+.pp-ddsided{
+	width: 50px;
+}
+
+a.pp-pointer{
+	padding-right: 0px !important;
+}
+
+.pp-sided{
+	width: 50px;
+}
+
+.pp-main{
+	left: 50px;
+}
+
+.pp-tab{
+	margin-top:0px;
+}
+.pp-tab-title{
+	background: #000;
+}
+.layui-this{
+	background: #fff;
+}
+.layui-tab-title li.pp-tab-li{
+	border: 0px;
+}
