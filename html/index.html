@@ -124,7 +124,7 @@
       </ul>
       <div class="layui-tab-content" style="padding: 0px; ">
         <div class="layui-tab-item layui-show" style="margin: 0px;overflow:hidden;">
-          <iframe src="start.html" frameborder="1" scrolling="yes"></iframe>
+          <iframe src="start.html" frameborder="0" scrolling="yes"></iframe>
         </div>
         
       </div>
@@ -207,7 +207,7 @@ layui.use(['element','jquery','layer'], function(){
     if (is_exist==1) {
        element.tabChange("main_tab", id);
     }else{
-      var content = '<iframe src="'+url+'" scrolling="yes" width="'+width+'" height="'+height+'"></iframe>';
+      var content = '<iframe src="'+url+'" scrolling="yes" width="'+width+'" height="'+height+'" frameborder="0"></iframe>';
       title = '<i class="fa '+icon+' back_space1"></i>'+title;
       element.tabAdd('main_tab', {
         title: title
