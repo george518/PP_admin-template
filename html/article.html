@@ -22,51 +22,45 @@
     </div>
     <!-- 公共头部 end-->
 
-    <div class="layui-layout layui-layout-admin" style="padding-left: 20px;">
-    <div class="layui-row" style="margin-top: 20px;">
-        <div class="layui-col-xs6">
-            <div class="layui-btn-group">
-              <button class="layui-btn " id="add_api">增加</button>
-              <button class="layui-btn layui-btn-primary" id="add_audit">提交审核</button>
-              <button class="layui-btn layui-btn-primary" id="audit">审核通过</button>
-            </div>
-            <!-- <a class="layui-btn" data-type="tabAdd" href="/api/add">新增</a>  -->
-            <!-- <a href="javascript:;" id="add_api" class="layui-btn"> 新增接口 </a>  
-            <a href="javascript:;" id="add_audit" class="layui-btn layui-btn-primary"> 提交审核 </a> -->
-        </div>
-        <div class="layui-col-xs6 search_text" style="text-align: right;">
-            <form class="layui-form" action="" onsubmit="javascript:return false;">
-                <div class="demoTable">
-                    <div class="layui-inline" style="width: 40%">
-                        <input class="layui-input" name="apiName" id="apiName" autocomplete="off"  placeholder="接口名称" >
-                    </div>
-                    <div class="layui-inline pp-search" style="width: 20%;text-align: left;">
-                          <select name="city" lay-search='' lay-verify="required">
-                            <option value=""></option>
-                            <option value="0">北京</option>
-                            <option value="1">上海</option>
-                            <option value="2">广州</option>
-                            <option value="3">深圳</option>
-                            <option value="4">杭州</option>
-                          </select>
-                    </div>
-                    <button class="layui-btn" data-type="reload" id="reload"><i class="fa fa-search"></i>查询</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <div class="layui-layout layui-layout-admin pp-main">
+	    <div class="layui-row" style="margin-top: 20px;">
+	        <div class="layui-col-xs6">
+	            <div class="layui-btn-group">
+	              <button class="layui-btn" id="add">增加</button>
+	            </div>
+	        </div>
+	        <div class="layui-col-xs6 search_text" style="text-align: right;">
+	            <form class="layui-form" action="" onsubmit="javascript:return false;">
+	                <div class="demoTable">
+	                    <div class="layui-inline" style="width: 40%">
+	                        <input class="layui-input" name="apiName" id="apiName" autocomplete="off"  placeholder="接口名称" >
+	                    </div>
+	                    <div class="layui-inline pp-search" style="width: 20%;text-align: left;">
+	                          <select name="city" lay-search='' lay-verify="required">
+	                            <option value=""></option>
+	                            <option value="0">北京</option>
+	                            <option value="1">上海</option>
+	                            <option value="2">广州</option>
+	                            <option value="3">深圳</option>
+	                            <option value="4">杭州</option>
+	                          </select>
+	                    </div>
+	                    <button class="layui-btn" data-type="reload" id="reload"><i class="fa fa-search"></i>查询</button>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
 
-    <table class="layui-hide" id="table_list" lay-filter="table_filter">
-    </table>
+	    <table class="layui-hide" id="table_list" lay-filter="table_filter">
+	    </table>
 
-    <script type="text/html" id="bar">
-        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详细</a>
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="audit">审核</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">启|停</a>
-
-    </script>
-</div>
+	    <script type="text/html" id="bar">
+	        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详细</a>
+	        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="audit">审核</a>
+	        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">启|停</a>
+	    </script>
+	</div>
 
 <script src="../static/layui/layui.js"></script>
 <script>
@@ -79,17 +73,16 @@
         //方法级渲染
         table.render({
             elem: '#table_list'
-            ,url: '/api/table'
+            ,url: './article.json'
             ,cols: [[
                 {checkbox: true, fixed: true},
                 {field:'id', title: 'ID', align:'center',sort: true, width:50}
-                ,{field:'api_name',title: '接口名称'}
-                ,{field:'api_url',title: '接口地址'}
-                ,{field:'method',title: '请求方式'}
-                ,{field:'source_name',title: '所属资源'}
-                ,{field:'status_text',title: '接口状态'}
-                ,{field:'create_time', title: '创建时间'}
-                ,{field:'update_time', title: '修改时间'}
+                ,{field:'title',title: '标题',width:200}
+                ,{field:'cate_id',title: '栏目名称'}
+                ,{field:'recommand',title: '是否推荐'}
+                ,{field:'headline',title: '是否头条'}
+                ,{field:'hits',title: '点击量'}
+                ,{field:'add_time', title: '发布日期'}
                 ,{fixed: 'right', width:260, align:'center', toolbar: '#bar'}
             ]]
             ,id: 'listReload'
@@ -108,73 +101,11 @@
             }
         };
 
-        $("#add_api").on("click",function() {
-            window.location.href="/api/add"
+        $("#add").on("click",function() {
+            window.location.href="article_add.html"
         })
 
-        //提交审核
-        $("#add_audit").on("click",function() {
-            var checkStatus = table.checkStatus('listReload');
-            var ids = ""; 
-            $.each(checkStatus["data"],function(k,v){
-                if (v.status==1) {
-                    ids += v.id+",";
-                }
-            })
 
-            ids = (ids.substring(ids.length-1)==',')?ids.substring(0,ids.length-1):ids;
-
-            if (!ids) {
-                layer.msg("请选择状态为正在开发的数据")
-                return false;
-            }
-
-            layer.confirm("确定要选中的接口提交审核吗？", function(){
-                var add_audit_data = {"ids":ids,"status":1}
-                $.post('{{urlfor "ApiController.AjaxChangeStatus"}}', add_audit_data, function (out) {
-                    if (out.status == 0) {
-                        layer.msg("操作成功",{icon: 1},function () {
-                            $("#reload").click();
-                        })
-                    } else {
-                        layer.msg(out.message)
-                    }
-                }, "json");        
-                return false;
-            });       
-        })
-
-        //批量审核
-        $("#audit").on("click",function() {
-            var checkStatus = table.checkStatus('listReload');
-            var ids = ""; 
-            $.each(checkStatus["data"],function(k,v){
-                if (v.status==2) {
-                    ids += v.id+",";
-                }
-            })
-
-            ids = (ids.substring(ids.length-1)==',')?ids.substring(0,ids.length-1):ids;
-
-            if (!ids) {
-                layer.msg("请选择状态为正在审核的数据")
-                return false;
-            }
-
-            layer.confirm("确定要选中的接口审核通过吗？", function(){
-                var add_audit_data = {"ids":ids,"status":3}
-                $.post('{{urlfor "ApiController.AjaxChangeStatus"}}', add_audit_data, function (out) {
-                    if (out.status == 0) {
-                        layer.msg("操作成功",{icon: 1},function () {
-                            $("#reload").click();
-                        })
-                    } else {
-                        layer.msg(out.message)
-                    }
-                }, "json");        
-                return false;
-            });       
-        })
 
         //监听工具条
         table.on('tool(table_filter)', function(obj){
@@ -191,7 +122,7 @@
 
                 layer.confirm(msg, function(){
                     var del_data = {"id":data.id}
-                    $.post('{{urlfor "ApiController.AjaxDel"}}', del_data, function (out) {
+                    $.post('/delete', del_data, function (out) {
                         if (out.status == 0) {
                             layer.msg("操作成功",{icon: 1},function () {
                                 $("#reload").click();

@@ -3,8 +3,167 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
+	<link rel="stylesheet" href="../static/editor.md/css/editormd.min.css" media="all">
+    
 </head>
 <body>
-    栏目设置
+    <div id="markdown-view" style="width: 95%">
+        <textarea style="display:none;" name="markdown">
+[TOC]
+
+#### 简要描述
+- 用户登录接口
+
+
+#### 请求头
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Content-MD5 |是  |string | 请求内容签名    |
+
+
+#### 请求参数
+
+|参数名|是否必须|类型|说明|示例值
+|:----    |:---|:----- |-----   |-----   |
+|username |是  |string |用户名   | george518
+|password |是  |string | 密码    | george518
+
+#### 返回参数
+
+|参数名|类型|说明|
+|:-----  |:-----|-----                           |
+|group_level |int   |用户组id，1：超级管理员；2：普通用户  |
+
+#### 返回示例
+
+**正确时返回:**
+
+```
+{
+"status": 200,
+"message": "Success",
+"data": {
+    "uid": "1",
+    "account": "admin",
+    "nickname": "Minho",
+    "group_level": 0 ,
+    "create_time": "1436864169",
+    "last_login_time": "0",
+}
+}
+```
+
+**错误时返回:**
+
+
+```
+{
+"status": 300,
+"message": "invalid username"
+"data":{
+    
+}
+}
+```
+
+#### 调用示例
+
+```php
+/************************************************************
+** @Description: 成果转化
+** @Author: haodaquan
+** @Date:   2018-02-09 10:44:14
+** @Last Modified by:   haodaquan
+** @Last Modified time: 2018-02-09 11:18:06
+*************************************************************/
+
+class Achievement extends MY_Controller
+{
+    public $data = [];
+    //列表字段，必须设置
+    public $showFields = array(
+                                'report_no'     => '编号',
+                                'title'         => '技术成果名称',
+                                'add_time'      => '创建时间',
+                                'status'        => '状态',
+                                'action'        => '操作'
+                            );
+    public $columnsWidth = array(
+                                'action'        => 150,
+                            );
+    public $pageTitle   = '成果转化';
+    public $modelName   = 'achievement_model';
+    public $searchFile  = 'admin/achievement_search.html';#搜索文件
+    public $pageTips    = '成果转化管理';
+    public $checkCol    = 0;
+
+    public $role = [];
+    public static $status_text = ["删除",'审核中',"驳回","通过"];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('admin/achievement_model');
+        // dump($this->amdin_model);
+        $this->admin_info = $this->admin_model->check_admin(); 
+    }
+
+    public  function index()
+    {
+        parent::index();
+    }
+
+    /**
+     * [query 查询配置 这里继承父类方法，也可以这里配置查询条件]
+     * @Author haodaquan
+     * @Date   2016-08-07
+     * @return [type]     [description]
+     */
+    public function query()
+    {
+        $_POST['status|>']=0;
+        parent::query();
+    }
+}
+```
+
+#### 备注
+
+- 更多返回错误代码请看首页的错误代码描述
+
+#### 接口版本
+
+|版本号|制定人|制定日期|修订日期|
+|:----    |:---|:----- |-----   |
+|2.1.0 |郝大全  |2018-01-15 |  2018-01-15 |
+        </textarea>
+    </div>
+
+<script src="../static/public/js/jquery.min.js"></script>
+<script src="../static/editor.md/lib/marked.min.js"></script>
+<script src="../static/editor.md/lib/prettify.min.js"></script>
+<script src="../static/editor.md/lib/raphael.min.js"></script>
+<script src="../static/editor.md/lib/underscore.min.js"></script>
+<script src="../static/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="../static/editor.md/lib/flowchart.min.js"></script>
+<script src="../static/editor.md/lib/jquery.flowchart.min.js"></script>
+<script src="../static/editor.md/editormd.js"></script>
+<script type="text/javascript">
+    var apiEditor;
+    
+    $(function() {
+        apiEditor = editormd.markdownToHTML("markdown-view", {
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+            codeFold: true
+        });
+    });
+</script>
 </body>
 </html>

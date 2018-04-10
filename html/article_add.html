@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>文章页面</title>
+  <link rel="stylesheet" href="../static/layui/css/layui.css">
+  <link rel="stylesheet" href="../static/admin/css/app.css">
+  <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css" media="all">
+  <link rel="stylesheet" href="../static/editor.md/css/editormd.min.css" media="all"> 
+</head>
+<body>
+    <!-- 公共头部  start-->
+    <div class="nav-title">
+        <div class="tl fl">
+            文章添加
+        </div>
+        <div class="tr fr">
+            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs" onclick="javascript:history.go(-1);"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs" onclick="javascript:window.location.reload();"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+
+        </div>
+    </div>
+    <!-- 公共头部 end-->
+
+    <div class="layui-layout layui-layout-admin pp-main">
+	    <form class="layui-form pp-form" action="" method="post" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属栏目</label>
+                <div class="layui-input-inline">
+                    <select name="cate_id" lay-verify="required"  lay-search="" style="width: 100%">
+                        <option value=""></option>
+                        
+                        <option value="1">计算机</option>
+                        <option value="2">电脑</option>
+                        
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">标题</label>
+                <div class="layui-input-inline width20">
+                    <input type="text" name="title" id="title" lay-verify="required" autocomplete="off" placeholder="不超过100字" class="layui-input" value="">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">标签</label>
+                <div class="layui-input-inline width20">
+                    <input type="text" name="tag" id="tag" lay-verify="required" autocomplete="off" placeholder="多个标签使用英文逗号隔开" class="layui-input" value="">
+                </div>
+                <div class="layui-form-mid layui-word-aux"><button class="layui-btn layui-btn-xs">插入已有标签</button></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">来源</label>
+                <div class="layui-input-inline width20">
+                    <input type="text" name="from" id="from" lay-verify="required" autocomplete="off" placeholder="admin" class="layui-input" value="admin">
+                </div>
+                <div class="layui-form-mid layui-word-aux"></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否原创</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="origin" value="1" title="是">
+                    <input type="radio" name="origin" value="0" title="否" checked>
+                </div>
+                <div class="layui-form-mid layui-word-aux"></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否推荐</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="recommend" value="1" title="是">
+                    <input type="radio" name="recommend" value="0" title="否" checked>
+                </div>
+                <div class="layui-form-mid layui-word-aux"></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否头条</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="headline" value="1" title="是">
+                    <input type="radio" name="headline" value="0" title="否" checked>
+                </div>
+                <div class="layui-form-mid layui-word-aux"></div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label class="layui-form-label">封面图</label>
+                <div class="layui-input-inline width40">
+                    <div class="layui-row">
+                        <div class="layui-col-xs6">
+                            <input type="text" name="src" lay-verify="src" autocomplete="off" placeholder="文件地址" readonly="" class="layui-input">
+                        </div>
+                        <div class="layui-col-xs6">
+                            <div class="layui-upload">
+                                <a class="input-file input-fileup layui-btn layui-btn-primary" href="javascript:;">
+                                    选择图片<input size="20" type="file" name="myfile" id="myfile">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border: 1px solid #efeeff;width: 112px;height: 77px;margin-top:10px;"><img src="../static/admin/images/default.png" alt="图片" width="110" height="75"></div>
+                </div>
+                <div class="layui-form-mid layui-word-aux"></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">文章内容</label>
+                <div class="layui-input-inline width90" id="art-editormd" style="border: 1px solid #e4e4e4">
+                   
+<textarea name="detail " style="display:none;">[TOC]
+
+#### 简要描述
+- 用户登录接口
+
+
+#### 请求头
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Content-MD5 |是  |string | 请求内容签名    |
+
+
+#### 请求参数
+
+|参数名|是否必须|类型|说明|示例值
+|:----    |:---|:----- |-----   |-----   |
+|username |是  |string |用户名   | george518
+|password |是  |string | 密码    | george518
+
+#### 返回参数
+
+|参数名|类型|说明|
+|:-----  |:-----|-----                           |
+|group_level |int   |用户组id，1：超级管理员；2：普通用户  |
+
+#### 返回示例
+
+**正确时返回:**
+
+```
+{
+"status": 200,
+"message": "Success",
+"data": {
+    "uid": "1",
+    "account": "admin",
+    "nickname": "Minho",
+    "group_level": 0 ,
+    "create_time": "1436864169",
+    "last_login_time": "0",
+}
+}
+```
+
+**错误时返回:**
+
+
+```
+{
+"status": 300,
+"message": "invalid username"
+"data":{
+    
+}
+}
+```
+
+#### 调用示例
+
+```php
+/************************************************************
+** @Description: 成果转化
+** @Author: haodaquan
+** @Date:   2018-02-09 10:44:14
+** @Last Modified by:   haodaquan
+** @Last Modified time: 2018-02-09 11:18:06
+*************************************************************/
+
+class Achievement extends MY_Controller
+{
+    public $data = [];
+    //列表字段，必须设置
+    public $showFields = array(
+                                'report_no'     => '编号',
+                                'title'         => '技术成果名称',
+                                'add_time'      => '创建时间',
+                                'status'        => '状态',
+                                'action'        => '操作'
+                            );
+    public $columnsWidth = array(
+                                'action'        => 150,
+                            );
+    public $pageTitle   = '成果转化';
+    public $modelName   = 'achievement_model';
+    public $searchFile  = 'admin/achievement_search.html';#搜索文件
+    public $pageTips    = '成果转化管理';
+    public $checkCol    = 0;
+
+    public $role = [];
+    public static $status_text = ["删除",'审核中',"驳回","通过"];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('admin/achievement_model');
+        // dump($this->amdin_model);
+        $this->admin_info = $this->admin_model->check_admin(); 
+    }
+
+    public  function index()
+    {
+        parent::index();
+    }
+
+    /**
+     * [query 查询配置 这里继承父类方法，也可以这里配置查询条件]
+     * @Author haodaquan
+     * @Date   2016-08-07
+     * @return [type]     [description]
+     */
+    public function query()
+    {
+        $_POST['status|>']=0;
+        parent::query();
+    }
+}
+```
+
+#### 备注
+
+- 更多返回错误代码请看首页的错误代码描述
+
+#### 接口版本
+
+|版本号|制定人|制定日期|修订日期|
+|:----    |:---|:----- |-----   |
+|2.1.0 |郝大全  |2018-01-15 |  2018-01-15 |
+</textarea>
+            </div>
+                </div>
+                <div class="layui-form-mid layui-word-aux"></div>
+            </div>
+
+
+
+            <div class="clear"></div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="sub">保存</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+	</div>
+
+<script src="../static/layui/layui.js"></script>
+<script src="../static/public/js/jquery.min.js?t=13"></script>
+<script src="../static/editor.md/editormd.js"></script>
+<script>
+
+
+
+    var $;
+    var apiEditor;
+    layui.use(['table','form','element','jquery'], function(){
+        var table = layui.table;
+        var form = layui.form;
+        var element = layui.element;
+        $ = layui.jquery;
+
+         apiEditor = editormd("art-editormd", {
+            width  : "90%",
+            height : 720,
+            path   : '../static/editor.md/lib/',
+            previewTheme : "dark",
+            saveHTMLToTextarea : true,
+            onchange : function() {
+                $("#output").html("onchange : this.id =>" + this.id + ", markdown =>" + this.getValue());
+                console.log("onchange =>", this, this.id, this.settings, this.state);
+            },
+            toolbarIcons : function() {
+                // Or return editormd.toolbarModes[name]; // full, simple, mini
+                // Using "||" set icons align right.
+                return ["undo", "redo", "|", 
+                        "bold", "del", "italic", "quote", "|", 
+                        "h1", "h2", "h3", "h4", "h5", "h6", "|", 
+                        "list-ul", "list-ol", "hr", "|",
+                        "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+                        "goto-line", "watch", "preview", "fullscreen", "clear", "search"]
+            },
+        });
+
+         form.render();
+
+    });
+</script>
+
+
+</body>
+</html>
