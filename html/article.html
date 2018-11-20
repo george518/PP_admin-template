@@ -12,10 +12,10 @@
     <!-- 公共头部  start-->
     <div class="nav-title">
         <div class="tl fl">
+            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs" onclick="javascript:history.go(-1);"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
             文章管理
         </div>
         <div class="tr fr">
-            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs" onclick="javascript:history.go(-1);"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
             <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs" onclick="javascript:window.location.reload();"><i class="fa fa-refresh" aria-hidden="true"></i></button>
 
         </div>
@@ -26,7 +26,9 @@
 	    <div class="layui-row" style="margin-top: 20px;">
 	        <div class="layui-col-xs6">
 	            <div class="layui-btn-group">
-	              <button class="layui-btn" id="add">增加</button>
+	              <button class="layui-btn" id="add">增加本页打开</button>
+                  <button class="layui-btn" id="tag_add">标签页打开</button>
+                  <button class="layui-btn" id="box">弹出框打开</button>
 	            </div>
 	        </div>
 	        <div class="layui-col-xs6 search_text" style="text-align: right;">
@@ -73,7 +75,7 @@
         //方法级渲染
         table.render({
             elem: '#table_list'
-            ,url: './article.json'
+            ,url: 'article.json'
             ,cols: [[
                 {checkbox: true, fixed: true},
                 {field:'id', title: 'ID', align:'center',sort: true, width:50}
@@ -101,8 +103,26 @@
             }
         };
 
+        //本页打开
         $("#add").on("click",function() {
             window.location.href="article_add.html"
+        })
+
+        //新标签页打开
+        $("#tag_add").on("click",function() {
+             layer.msg("请调用 window.parent.openTab",{icon: 1},function () {
+                
+             })
+            // window.parent.openTab('article_add.html','新增标签页',"admin-0",'');
+        })
+
+        $("#box").on("click",function() {
+            layer.open({
+                title:'弹出框',
+                type: 2, 
+                area: ['460px', '280px'],
+                content: ['add.html','no'], 
+            }); 
         })
 
 
